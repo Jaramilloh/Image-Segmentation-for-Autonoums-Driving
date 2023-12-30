@@ -58,7 +58,7 @@ $$L_{1}(\hat{y},y) = -\frac{1}{NC} \sum_{i=1}^{N}\sum_{j=1}^{C} w_{j} \left (  \
 
 Objective function $L_{2}$ is the generalized Dice loss [11], based on the Sørensen–Dice coefficient [12], [13], evaluating the overlap between the predicted segmentation and the reference. It is described in Equation 3 for each class as twice the intersection of prediction and reference over the sum of their sizes (cardinality).
 
-$`L_{2}=1-\frac{{2\sum_{i=1}^{N}\sum_{j=1}^{C} w_{j} y_{ij}\hat{y}_{ij}}}{{\sum_{i=1}^{N}\sum_{j=1}^{C} w_{j} y_{ij} + \sum_{i=1}^{N}\sum_{j=1}^{C} w_{j} \hat{y}_{ij}}}\ \ \ \ [3]`$
+$$L_{2} = 1 - \frac{{2 \sum_{i=1}^{N}\sum_{j=1}^{C} w_j y_{ij}\hat{y}_{ij}}} {{\sum_{i=1}^{N}\sum_{j=1}^{C} w_j y_{ij} + \sum_{i=1}^{N}\sum_{j=1}^{C} w_j \hat{y}_{ij}}}\ \ \ \ [3]$$
 
 The model is trained for 50 epochs using an Adam optimizer [14] with a learning rate of 0.0001. Due to runtime constraints, experiments with 200 epochs were not conducted as each training epoch took around 5 minutes.
 
