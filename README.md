@@ -49,17 +49,16 @@ These models were chosen based on their state-of-the-art status at the time of t
 
 The objective function implemented for gradient calculation is described in Equation 1:
 
-$$L = 0.5L_{1} + 0.5L_{2}\; \; \; \; [1]$$
+$$L = 0.5L_{1} + 0.5L_{2}\ \ \ \ [1]$$
 
 
 Objective function $L_{1}$ is the smoothed cross-entropy, proportionally weighted for each class to address the imbalance in the number of samples per class. It is described in Equation 2, where $\hat{y}_{ij}$ is the predicted probability of the pixel for each class, $y_{ij}$ is the reference, $N$ is the number of pixels, $C$ is the number of classes, $w_{j}$ is the weight of each class, and $\epsilon$ is the smoothing factor.
 
-$$L_{1}(\hat{y},y) = -\frac{1}{NC} \sum_{i=1}^{N}\sum_{j=1}^{C} w_{j} \left (  \right (1-\epsilon)y_{ij} + \frac{\epsilon}{C}) \log(\hat{y}_{ij})\; \; \; \; [2]$$
+$$L_{1}(\hat{y},y) = -\frac{1}{NC} \sum_{i=1}^{N}\sum_{j=1}^{C} w_{j} \left (  \right (1-\epsilon)y_{ij} + \frac{\epsilon}{C}) \log(\hat{y}_{ij})\ \ \ \ [2]$$
 
 Objective function $L_{2}$ is the generalized Dice loss [11], based on the Sørensen–Dice coefficient [12], [13], evaluating the overlap between the predicted segmentation and the reference. It is described in Equation 3 for each class as twice the intersection of prediction and reference over the sum of their sizes (cardinality).
 
-$$L_{2} = 1 - \frac{{2 \sum_{i=1}^{N}\sum_{j=1}^{C} w_j y_{ij}\hat{y}_{ij}}} 
-{{\sum_{i=1}^{N}\sum_{j=1}^{C} w_j y_{ij} + \sum_{i=1}^{N}\sum_{j=1}^{C} w_j \hat{y}_{ij}}}\; \; \; \; [3]$$
+$`L_{2}=1-\frac{{2\sum_{i=1}^{N}\sum_{j=1}^{C} w_{j} y_{ij}\hat{y}_{ij}}}{{\sum_{i=1}^{N}\sum_{j=1}^{C} w_{j} y_{ij} + \sum_{i=1}^{N}\sum_{j=1}^{C} w_{j} \hat{y}_{ij}}}\ \ \ \ [3]`$
 
 The model is trained for 50 epochs using an Adam optimizer [14] with a learning rate of 0.0001. Due to runtime constraints, experiments with 200 epochs were not conducted as each training epoch took around 5 minutes.
 
